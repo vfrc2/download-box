@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+    transmission:
+        build: ./transmission
+        container_name: transmission
+        ports:
+            - 9091:9091
+            - 51413:51413
+            - 51413:51413/udp
+        volumes: 
+            - ./transmission/root/scripts:/scripts
+        restart: unless-stopped
