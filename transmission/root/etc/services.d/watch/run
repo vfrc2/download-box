@@ -1,6 +1,1 @@
-
-#!/usr/bin/with-contenv bash
-
-s6-setuidgid abc /scripts/watch.sh
-
-wait
+../../../scripts/watch.sh
