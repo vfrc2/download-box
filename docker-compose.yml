@@ -1,6 +1,19 @@
 version: "3.8"
 
 services:
+    aria2:
+        image: abcminiuser/docker-aria2-with-webui
+        container_name: aria2
+        ports:
+            - 6080:80
+            - 6800:6800
+        volumes: 
+            - ${SERVER_DOWNLOAD_DIR}:/data
+        environment: 
+            - ARIA2_USER=admin
+            - RPC_SECRET=hello
+        restart: unless-stopped
+
     transmission:
         build: ./transmission
         container_name: transmission
@@ -8,6 +21,6 @@ services:
             - 9091:9091
             - 51413:51413
             - 51413:51413/udp
-        # volumes: 
-        #     - ./dwnl:/downloads
+        volumes: 
+            - ${SERVER_DOWNLOAD_DIR}:/downloads
         restart: unless-stopped
